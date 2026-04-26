@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            background-color: #000;
+            color: #0f0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            max-width: 500px;
+            border-bottom: 1px solid #0f0;
+            padding: 10px 0;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .user-tag {
+            font-size: 0.8rem;
+            color: #0a0;
+        }
+
+        .title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* Grid System untuk Android */
+        .grid-tools {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .btn-tool {
+            background: rgba(0, 20, 0, 0.5);
+            border: 1px solid #0f0;
+            padding: 25px 10px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efek saat ditekan di layar sentuh */
+        .btn-tool:active {
+            background: #0f0;
+            color: #000;
+            box-shadow: 0 0 15px #0f0;
+        }
+
+        .status-console {
+            width: 100%;
+            max-width: 500px;
+            margin-top: 25px;
+            padding: 10px;
+            background: #050505;
+            border: 1px solid #030;
+            height: 120px;
+            font-size: 0.7rem;
+            overflow-y: hidden;
+        }
+
+        /* Animasi Overlay Loading */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #030;
+            border-top: 3px solid #0f0;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="overlay">
+        <div class="spinner"></div>
+        <p style="margin-top: 15px; font-size: 0.8rem;">LOADING ...</p>
+    </div>
+
+    <header>
+        <div class="user-tag">ROOT@NazNotDev:~#</div>
+        <div class="title">OMNIX DASHBOARD</div>
+    </header>
+
+    <div class="grid-tools">
+        <div class="btn-tool" onclick="goto('http://127.0.0.1:5000')">DOS PANEL</div>
+        <div class="btn-tool" onclick="goto('https://xvoiddevelopment.github.io/QR-GENERATOR/qr-generator.html')">QR GENERATOR</div>
+        <div class="btn-tool" onclick="goto('https://xvoiddevelopment.github.io/RAT-FREE/RAT.html')">SADAP (RAT)</div>
+        <div class="btn-tool" onclick="goto('https://termux.com')">Terminal TERMUX</div>
+        <div class="btn-tool" onclick="goto('https://xvoiddevelopment.github.io/Dev/dev.html')">DEV INFORMATION</div>
+        <div class="btn-tool" onclick="goto('https://www.xnxx.com')">XNXX.</div>
+        <div class="btn-tool" onclick="goto('https://t.me/NazNotDev')">Buy vip apk</div>
+        <div class="btn-tool" onclick="goto('https://xvoiddevelopment.github.io/My-status/status.html')">MY STATUS</div>
+    </div>
+
+    <div class="status-console" id="log">
+        [SISTEM] : Waiting for user input...<br>
+        [SISTEM] : Kernel OMNIX V 1.00 active.<br>
+        [STATUS] : READY
+    </div>
+
+    <script>
+        function goto(url) {
+            const overlay = document.getElementById('overlay');
+            const log = document.getElementById('log');
+            
+            // Tampilkan log di console dashboard
+            log.innerHTML += `[RUN] : Accessing external link...<br>`;
+            log.innerHTML += `[WRN] : Bypassing safety protocol...<br>`;
+
+            // Tampilkan animasi loading sebentar
+            setTimeout(() => {
+                overlay.style.display = 'flex';
+            }, 300);
+
+            // Pindah ke URL setelah 1.5 detik
+            setTimeout(() => {
+                window.location.href = url;
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
